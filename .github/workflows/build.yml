@@ -6,16 +6,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04   # ✅ FIX: مهم‌ترین اصلاح
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.10
+        python-version: '3.10'   # ✅ حتما با کوتیشن
 
     - name: Install system dependencies
       run: |
@@ -29,7 +29,7 @@ jobs:
         pip install --upgrade pip
         pip install buildozer cython==0.29.36
 
-    - name: Ensure buildozer.spec exists
+    - name: Prepare buildozer
       run: |
         if [ ! -f buildozer.spec ]; then buildozer init; fi
 
